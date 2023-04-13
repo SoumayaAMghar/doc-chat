@@ -24,7 +24,7 @@
 
 				<div class="text">
 					<hr class="hr" />
-					사진업로드
+					envoyer la photo
 					<hr class="hr" />
 				</div>
 				<!-- 섬네일은 아래 주소 참고 -->
@@ -32,7 +32,7 @@
 				<form action="/image/uploadProc" method="post" enctype="multipart/form-data">
 					<table class="table">
 						<tr>
-							<td><input id="input_img" type="file" name="file" placeholder="사진파일"></td>
+							<td><input id="input_img" type="file" name="file" placeholder="fichier photo"></td>
 						</tr>
 						<tr>
 							<td>
@@ -42,22 +42,22 @@
 							</td>
 						</tr>
 						<tr>
-							<td><input type="text" name="caption" placeholder="이미지 소개"></td>
+							<td><input type="text" name="caption" placeholder="présentation des images"></td>
 						</tr>
 						<tr>
-							<td><input type="text" name="location" placeholder="위치"></td>
+							<td><input type="text" name="location" placeholder="emplacement"></td>
 						</tr>
 						<tr>
-							<td><input type="text" name="tags" placeholder="#태그"></td>
+							<td><input type="text" name="tags" placeholder="#tag"></td>
 						</tr>
 					</table>
-					<input type="submit" value="업로드">
+					<input type="submit" value="télécharger">
 				</form>
 
 			</div>
 			<div class="smallbox">
 				<div class=text>
-					<a href="javascript:window.history.back()" class="under1">뒤로가기</a>
+					<a href="javascript:window.history.back()" class="under1">retourner</a>
 				</div>
 			</div>
 		</div>
@@ -74,7 +74,7 @@
 			var filesArr = Array.prototype.slice.call(files);
 			filesArr.forEach(function(f) {
 				if (!f.type.match("image.*")) {
-					alert("확장자는 이미지 확장자만 가능합니다.");
+					alert("L'extension ne peut être qu'une extension d'image.");
 					return;
 				}
 				sel_file = f;

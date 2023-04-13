@@ -27,9 +27,9 @@ public class Image{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String location; //사진 찍은 위치 (로마)
-	private String caption; // 사진 설명
-	private String postImage; //포스팅 사진 경로+이름
+	private String location;
+	private String caption;
+	private String postImage;
 	
 	@ManyToOne
 	@JoinColumn(name="userId")

@@ -15,9 +15,5 @@ public interface ImageRepository extends JpaRepository<Image, Integer>{
 	)
 	Page<Image> findImage(int userId, Pageable pageable);
 	
-	/* 태그 검색 해볼 사람 해보기
-	 * select * from image where id in (
-			select imageId from tag where name = '연기자'
-		);
-	 */
+
 }

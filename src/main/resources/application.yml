@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8083
   servlet:
     context-path: /
     
@@ -44,7 +44,7 @@ spring:
       password: 1234   
 
 file:
-  path: C:/src/instagram/src/main/resources/upload/
+  path: C:/users/yc/desktop/insta/src/main/resources/upload/
   
 #file:
 #  path: C:/src/springWork/insta/springboot-jpa-instagram/src/main/resources/upload/

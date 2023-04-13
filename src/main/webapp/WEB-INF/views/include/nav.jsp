@@ -22,16 +22,15 @@
 	</div>
 </nav>
 
-<!-- 좋아요 Modal 시작 -->
+<!-- OK Start Modal -->
 <div id="modal">
   <div id="like_popup_list">
 	  <div class="like_popup_items">
 	  
 	  </div>
 	  <div class="like_popup_close">
-	      <button type="button">닫기</button>
+	      <button type="button">close</button>
 	  </div>
   </div>
 
 </div>
-<!-- 좋아요 Modal 끝 --> 

@@ -24,17 +24,17 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id; // 시퀀스
-	private String username; // 사용자 아이디
+	private int id;
+	private String username;
 	@JsonIgnore
-	private String password; // 암호화된 패스워드
-	private String name; // 사용자 이름
-	private String website; // 홈페이지 주소
-	private String bio; // 자기 소개
+	private String password;
+	private String name;
+	private String website;
+	private String bio;
 	private String email;
 	private String phone;
 	private String gender;
-	private String profileImage; //프로파일 사진 경로+이름
+	private String profileImage;
 	
 	private String provider; // kakao, google, facebook 
 	private String providerId;
@@ -45,9 +45,12 @@ public class User {
 	@JsonIgnoreProperties({"user", "tags", "likes"})
 	@OrderBy("id desc")
 	private List<Image> images = new ArrayList<>();
+
+	@OneToMany(mappedBy = "creator")
+	private List<Comment> comments = new ArrayList<>();
 	
-	@CreationTimestamp // 자동으로 현재 시간이 세팅
+	@CreationTimestamp // Automatically set the current time
 	private Timestamp createDate;
-	@CreationTimestamp // 자동으로 현재 시간이 세팅
+	@CreationTimestamp 
 	private Timestamp updateDate;
 }

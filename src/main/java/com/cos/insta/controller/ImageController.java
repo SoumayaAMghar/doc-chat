@@ -37,7 +37,7 @@ import com.cos.insta.util.Utils;
 @Controller
 public class ImageController {
 
-	@Value("${file.path}")
+	@Value("C:/users/yc/desktop/insta/src/main/resources/upload/")
 	private String fileRealPath;
 
 	@Autowired
@@ -53,11 +53,11 @@ public class ImageController {
 	public String imageExplore(Model model,
 			@PageableDefault(size = 9, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
-		// 알고리즘 ( 내 주변에서 좋아요가 가장 많은 순으로 해보는 것 추천)
+		// Algorithm (recommended to try in order of the most likes around me)
 		Page<Image> pImages = mImageRepository.findAll(pageable);
 		List<Image> images = pImages.getContent();
 
-		// 4번 likeCount
+		// 4times likeCount
 		for (Image item : images) {
 			int likeCount = mLikesRepository.countByImageId(item.getId());
 			item.setLikeCount(likeCount);
@@ -77,15 +77,15 @@ public class ImageController {
 		Image image = oImage.get();
 
 		try {
-			if (oldLike == null) { // 좋아요 안한 상태 (추가)
+			if (oldLike == null) { // Unliked status (added)
 				Likes newLike = Likes.builder().image(image).user(userDetail.getUser()).build();
 
 				mLikesRepository.save(newLike);
-				// 좋아요 카운트 증가(리턴 값 수정)
+				// Increase like count (modify return value)
 				return "like";
-			} else { // 좋아요 한 상태 (삭제)
+			} else { // Liked status (remove)
 				mLikesRepository.delete(oldLike);
-				// 좋아요 카운트 증가(리턴 값 수정)
+				// Increase like count (modify return value)
 				return "unLike";
 			}
 
@@ -96,7 +96,7 @@ public class ImageController {
 		return "fail";
 	}
 
-	// http://localhost:8080/image/feed/scroll?page=1..2..3..4
+	// http://localhost:8083/image/feed/scroll?page=1..2..3..4
 	@GetMapping("/image/feed/scroll")
 	public @ResponseBody List<Image> imageFeedScroll(@AuthenticationPrincipal MyUserDetail userDetail,
 			@PageableDefault(size = 3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable, Model model) {
@@ -118,12 +118,12 @@ public class ImageController {
 		return images;
 	}
 
-	@GetMapping({ "/", "/image/feed" })
+	@GetMapping("/image/feed")
 	public String imageFeed(@AuthenticationPrincipal MyUserDetail userDetail,
 			@PageableDefault(size = 3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable, Model model) {
 		// log.info("username : " + userDetail.getUsername());
 
-		// 내가 팔로우한 친구들의 사진
+		// Photos of friends you follow
 		Page<Image> pageImages = mImageRepository.findImage(userDetail.getUser().getId(), pageable);
 
 		List<Image> images = pageImages.getContent();
@@ -145,7 +145,21 @@ public class ImageController {
 
 		return "image/feed";
 	}
+	@GetMapping("/" )
+	public String imageFeed(@PageableDefault(size = 3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable, Model model) {
 
+		Page<Image> pageImages = mImageRepository.findAll(pageable);
+		List<Image> images = pageImages.getContent();
+
+		for (Image item : images) {
+			int likeCount = mLikesRepository.countByImageId(item.getId());
+			item.setLikeCount(likeCount);
+		}
+
+		model.addAttribute("images", images);
+
+		return "image/feed";
+	}
 	@GetMapping("/image/upload")
 	public String imageUpload() {
 		return "image/image_upload";

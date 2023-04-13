@@ -34,10 +34,10 @@
 							
 								<c:choose>
 									<c:when test="${followCheck eq  1}">
-										<button onClick="follow(false, ${user.id})" class="profile_edit_btn">팔로잉</button>
+										<button onClick="follow(false, ${user.id})" class="profile_edit_btn">suivant</button>
 									</c:when>
 									<c:otherwise>
-										<button onClick="follow(true, ${user.id})" class="profile_follow_btn">팔로우</button>
+										<button onClick="follow(true, ${user.id})" class="profile_follow_btn">suivre</button>
 									</c:otherwise>
 								</c:choose>
 							
@@ -46,18 +46,18 @@
 					
 					<c:if test="${principal.user.id eq user.id}">
 						<a href="/image/upload">
-							<button class="profile_follow_btn">사진등록</button>
+							<button class="profile_follow_btn">enregistrement des photos</button>
 						</a>
 						<a href="/user/edit">
-							<button class="profile_edit_btn">회원수정</button>
+							<button class="profile_edit_btn">Modifier le profil</button>
 						</a> <i class="fa fa-cog fa-lg"></i>
 					</c:if>	
 				</div>
 				
 				<ul class="profile__stats">
-					<li class="profile__stat"><span class="profile__stat-number">${imageCount}</span> 게시물</li>
-					<li class="profile__stat"><span class="profile__stat-number">${followerCount} </span><a href="/follow/follower/${user.id}">팔로워</a></li>
-					<li class="profile__stat"><span class="profile__stat-number">${followCount} </span><a href="/follow/follow/${user.id}">팔로우</a></li>
+					<li class="profile__stat"><span class="profile__stat-number">${imageCount}</span> poste</li>
+					<li class="profile__stat"><span class="profile__stat-number">${followerCount} </span><a href="/follow/follower/${user.id}">suiveurs</a></li>
+					<li class="profile__stat"><span class="profile__stat-number">${followCount} </span><a href="/follow/follow/${user.id}">suivre</a></li>
 				</ul>
 				
 				<div class="profile__bio">
@@ -104,13 +104,13 @@
 		let principalId = ${principal.user.id}
 
 		$(function() {
-			//이미지 클릭시 업로드창 실행
+			//Open upload window when clicking image
 			$('#profile_image').click(function() {
 				if(userId === principalId){
 					$("input[name='profileImage']").click();
 				}
 			})
-			//업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
+			//Put fileProfile as hidden in the event form tag that is executed when the upload file is changed
 			$("input[name='profileImage']").change(function(e) {
 				$("#frm_profile_img").submit();
 			})

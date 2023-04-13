@@ -24,7 +24,7 @@
 
 				<div class="text">
 					<hr class="hr" />
-					추가 인증 필요
+					Authentification supplémentaire requise
 					<hr class="hr" />
 				</div>
 				<!-- 섬네일은 아래 주소 참고 -->
@@ -44,7 +44,7 @@
 			</div>
 			<div class="smallbox">
 				<div class=text>
-					<a href="javascript:window.history.back()" class="under1">뒤로가기</a>
+					<a href="javascript:window.history.back()" class="under1">retourner</a>
 				</div>
 			</div>
 		</div>
