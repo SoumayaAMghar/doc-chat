@@ -17,13 +17,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cos.insta.repository.ImageRepository;
@@ -31,6 +29,7 @@ import com.cos.insta.repository.LikesRepository;
 import com.cos.insta.repository.TagRepository;
 import com.cos.insta.service.MyUserDetail;
 import com.cos.insta.util.Utils;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ImageController {
@@ -100,17 +99,32 @@ public class ImageController {
 
 		return "fail";
 	}
-	@PostMapping("/image/{imageId}/comments")
-	public String createComment(@PathVariable Long imageId,	 @AuthenticationPrincipal MyUserDetail userDetail , @RequestParam("comment") String commentText) {
-		Image image = (Image) mImageRepository.findById(imageId).orElseThrow(() -> new ResourceNotFoundException("Image", "id", imageId));
+	@PostMapping("/image/comment/{id}")
+	public String createComment(@PathVariable int id,	 @AuthenticationPrincipal MyUserDetail userDetail , @RequestParam("comment") String commentText) {
+		//Comment comment = commentRepository.findByUserIdAndImageId(userDetail.getUser().getId(), id);
+		Optional<Image> oImage = mImageRepository.findById(id);
+		Image image = oImage.get();
+
+		List<Comment> comments = image.getComments();
+
 		Comment comment = new Comment(commentText);
+//		comment.setUser(MyUserDetail.getUser())
 		comment.setImage(image);
 		commentRepository.save(comment);
 		image.getComments().add(comment);
+		comments.add(comment);
 		mImageRepository.save(image);
-		return "redirect:/posts/" + image.getId();
+
+		ModelAndView modelAndView = new ModelAndView("image/feed");
+		modelAndView.addObject("image", image);
+		modelAndView.addObject("comments", comments);
+
+		return "redirect:/";
+
+//		Image image = (Image) mImageRepository.findById(imageId).orElseThrow(() -> new ResourceNotFoundException("Image", "id", imageId));
 
 	}
+
 
 	// http://localhost:8083/image/feed/scroll?page=1..2..3..4
 	@GetMapping("/image/feed/scroll")
@@ -126,7 +140,7 @@ public class ImageController {
 				image.setHeart(true);
 			}
 
-			// 추가
+			//
 			int likeCount = mLikesRepository.countByImageId(image.getId());
 			image.setLikeCount(likeCount);
 		}
@@ -151,7 +165,7 @@ public class ImageController {
 			}
 		}
 
-		// 4번 likeCount
+		// 4times likeCount
 		for (Image item : images) {
 			int likeCount = mLikesRepository.countByImageId(item.getId());
 			item.setLikeCount(likeCount);
@@ -170,6 +184,7 @@ public class ImageController {
 		for (Image item : images) {
 			int likeCount = mLikesRepository.countByImageId(item.getId());
 			item.setLikeCount(likeCount);
+
 		}
 
 		model.addAttribute("images", images);

@@ -50,7 +50,7 @@
 						</span>
 					</div>
 					
-					<!-- 수정 좋아요 카운트 증가 -->
+
 					<span class="photo__likes" id="photo_likes_count_${image.id}">${image.likeCount}</span><span class="photo__likes"> likes</span>
 					
 					<div class="photo_caption">
@@ -64,21 +64,29 @@
 							#${tag.name}  
 						</c:forEach>
 					</div>
-<%--					<ul class="photo__comments">--%>
-<%--						<li class="photo__comment"><span class="photo__comment-author">serranoarevalo</span> i--%>
-<%--							love this!</li>--%>
-<%--						<li class="photo__comment"><span class="photo__comment-author">serranoarevalo</span> i--%>
-<%--							don't love this!</li>--%>
-<%--					</ul>--%>
+
 					<span class="photo__date">${image.createDate}</span>
 
+<%--				<c:forEach var="comment" items="${image.comments}">--%>
+<%--						<div class="photo_user_info">--%>
+<%--							<span class="photo__username">${comment.user.username}</span>--%>
+<%--&lt;%&ndash;							<span class="photo__location">test commentaire</span>&ndash;%&gt;--%>
+<%--							<span class="photo__location">${comment.text}</span>--%>
+<%--						</div>--%>
+
+<%--				</c:forEach>--%>
+						<c:forEach items="${comments}" var="comment">
+						<div class="photo_user_info">
+							<span class="photo__username">${comment.user.username}</span>
+							<p class="photo__location">${comment.text}</p>
+						</div>
+						</c:forEach>
 					<div class="photo__add-comment-container">
-						<textarea placeholder="Add a comment..."></textarea>
-<%--						<i class="fa fa-ellipsis-h"></i>--%>
-							<a href="/image/{imageId}/comments">
-								<button>Post</button>
-							</a>
-					</div>
+					<form method="post" action="/image/comment/${image.id}">
+						<textarea name="comment" placeholder="Add a comment..."></textarea>
+						<button type="submit">Post</button>
+					</form>
+				</div>
 				</div>
 			</div>
 		

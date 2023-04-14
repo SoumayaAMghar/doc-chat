@@ -36,11 +36,10 @@ public class User {
 	private String gender;
 	private String profileImage;
 	
-	private String provider; // kakao, google, facebook 
+	private String provider; // kakao, google, facebook
 	private String providerId;
 	
-	// (1) findById() 때만 동작
-	// (2) findByUserInfo() 제외
+
 	@OneToMany(mappedBy = "user")
 	@JsonIgnoreProperties({"user", "tags", "likes"})
 	@OrderBy("id desc")

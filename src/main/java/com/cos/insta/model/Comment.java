@@ -29,4 +29,12 @@ public class Comment {
     public Comment() {
 
     }
+
+    public Comment(Long id, String text, Image image, Post post, User creator) {
+        Id = id;
+        this.text = text;
+        this.image = image;
+        this.post = post;
+        this.creator = creator;
+    }
 }

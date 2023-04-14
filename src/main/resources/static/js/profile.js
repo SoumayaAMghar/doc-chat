@@ -1,6 +1,6 @@
 function follow(check, userId){
-	// true -> follow 하기
-	// false -> unFollow 하기
+	// true -> follow
+	// false -> unFollow
 	let url = "/follow/"+userId;
 	if(check){
 		fetch(url,{

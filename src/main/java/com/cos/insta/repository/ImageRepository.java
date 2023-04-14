@@ -18,5 +18,5 @@ public interface ImageRepository extends JpaRepository<Image, Integer>{
 	Page<Image> findImage(int userId, Pageable pageable);
 
 
-	Optional<Object> findById(Long imageId);
+//	Optional<Object> findById(Long imageId);
 }

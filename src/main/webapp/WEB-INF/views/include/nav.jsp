@@ -8,7 +8,7 @@
 
 <nav class="navigation">
 	<a href="/"> <img src="/images/1Doc-chat-Logo.jpg" style="width: 182px; height: 44px" />
-	</a> <input type="text" placeholder="Search">
+<%--	</a> <input type="text" placeholder="Search">--%>
 	<div class="navigation__links">
 		<a href="/image/explore" class="navigation__link"> 
 			<i class="fa fa-compass"></i>

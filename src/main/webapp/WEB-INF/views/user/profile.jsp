@@ -27,11 +27,11 @@
 			
 			<div class="profile__info">
 				<div class="profile__title">
+
 					<h1>${user.username}</h1>
 
 					<c:if test="${principal.user.id ne user.id}">
 						<div id="follow_check">
-							
 								<c:choose>
 									<c:when test="${followCheck eq  1}">
 										<button onClick="follow(false, ${user.id})" class="profile_edit_btn">suivant</button>
@@ -43,7 +43,7 @@
 							
 						</div>
 					</c:if>
-					
+					<div>
 					<c:if test="${principal.user.id eq user.id}">
 						<a href="/image/upload">
 							<button class="profile_follow_btn">enregistrement des photos</button>
@@ -51,7 +51,8 @@
 						<a href="/user/edit">
 							<button class="profile_edit_btn">Modifier le profil</button>
 						</a> <i class="fa fa-cog fa-lg"></i>
-					</c:if>	
+					</c:if>
+					</div>
 				</div>
 				
 				<ul class="profile__stats">

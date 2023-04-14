@@ -153,11 +153,11 @@ public class UserController {
 	@PutMapping("/user/editProc")
 	public String userEditProc(User requestUser, @AuthenticationPrincipal MyUserDetail userDetail) {
 
-		// 영속화
+
 		Optional<User> oUser = mUserRepository.findById(userDetail.getUser().getId());
 		User user = oUser.get();
 
-		// 값 변경
+
 		user.setName(requestUser.getName());
 		user.setUsername(requestUser.getUsername());
 		user.setWebsite(requestUser.getWebsite());
@@ -166,7 +166,7 @@ public class UserController {
 		user.setPhone(requestUser.getPhone());
 		user.setGender(requestUser.getGender());
 
-		// 다시 영속화 및 flush
+		//
 		mUserRepository.save(user);
 
 		return "redirect:/user/" + userDetail.getUser().getId();
