@@ -15,11 +15,11 @@
 <body>
   <main id="login">
     <div class="login__column">
-      <img src="/images/phoneImage.png" />
+      <img src="/images/mobile.png" />
     </div>
     <div class="login__column">
       <div class="login__box">
-        <img src="/images/loginLogo.png" />
+        <img src="/images/1Doc-chat-Logo.jpg" />
         <form action="/auth/loginProc" method="post" class="login__form">
           <input type="text" name="username" placeholder="Username" required>
           <input type="password" name="password" placeholder="Password" required>
@@ -33,13 +33,8 @@
         <a class="login__blue-link" href="/auth/join">Sign up</a>
       </div>
       <div class="login__t-box">
-        <span class="login__text">
-          Get the app.
-        </span>
-        <div class="login__appstores">
-          <img src="/images/ios.png" class="login__appstore" />
-          <img src="/images/android.png" class="login__appstore" />
-        </div>
+
+
       </div>
     </div>
   </main>

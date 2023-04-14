@@ -36,7 +36,7 @@
 					<div class="photo__actions">
 						<span class="photo__action"> 
 						
-						<!-- 좋아요(하트) 이미지 -->
+
 						<c:choose>
 							<c:when test="${image.heart eq true}">
 								<i onclick="onFeedLoad(${image.id})" id="${image.id}" class="fa fa-heart heart heart-clicked"></i>
@@ -64,16 +64,20 @@
 							#${tag.name}  
 						</c:forEach>
 					</div>
-					<ul class="photo__comments">
-						<li class="photo__comment"><span class="photo__comment-author">serranoarevalo</span> i
-							love this!</li>
-						<li class="photo__comment"><span class="photo__comment-author">serranoarevalo</span> i
-							don't love this!</li>
-					</ul>
+<%--					<ul class="photo__comments">--%>
+<%--						<li class="photo__comment"><span class="photo__comment-author">serranoarevalo</span> i--%>
+<%--							love this!</li>--%>
+<%--						<li class="photo__comment"><span class="photo__comment-author">serranoarevalo</span> i--%>
+<%--							don't love this!</li>--%>
+<%--					</ul>--%>
 					<span class="photo__date">${image.createDate}</span>
+
 					<div class="photo__add-comment-container">
 						<textarea placeholder="Add a comment..."></textarea>
-						<i class="fa fa-ellipsis-h"></i>
+<%--						<i class="fa fa-ellipsis-h"></i>--%>
+							<a href="/image/{imageId}/comments">
+								<button>Post</button>
+							</a>
 					</div>
 				</div>
 			</div>

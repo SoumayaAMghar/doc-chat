@@ -51,6 +51,6 @@ public class User {
 	
 	@CreationTimestamp // Automatically set the current time
 	private Timestamp createDate;
-	@CreationTimestamp 
+	@CreationTimestamp
 	private Timestamp updateDate;
 }

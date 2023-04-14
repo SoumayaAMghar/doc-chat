@@ -33,7 +33,7 @@
 		        <c:if test="${principal.user.id ne follow.toUser.id}">
 			        <c:choose>
 			        	<c:when test="${follow.followState eq true}">
-			        		<button onClick="follow(false, ${follow.toUser.id}, ${status.count})" class="following_btn">suivant</button>
+			        		<button onClick="follow(false, ${follow.toUser.id}, ${status.count})" class="following_btn">suivi(e)</button>
 			        	</c:when>
 			        	<c:otherwise>
 			        		<button onClick="follow(true, ${follow.toUser.id}, ${status.count})" class="follow_btn">suivre</button>

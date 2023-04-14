@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.cos.insta.model.Image;
 
+import java.util.Optional;
+
 public interface ImageRepository extends JpaRepository<Image, Integer>{
 
 	@Query
@@ -14,6 +16,7 @@ public interface ImageRepository extends JpaRepository<Image, Integer>{
 			value = "select * from image where userId in (select toUserId from follow where fromUserId = ?1) or userId = ?1", nativeQuery = true		
 	)
 	Page<Image> findImage(int userId, Pageable pageable);
-	
 
+
+	Optional<Object> findById(Long imageId);
 }

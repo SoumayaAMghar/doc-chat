@@ -56,7 +56,7 @@
 				
 				<ul class="profile__stats">
 					<li class="profile__stat"><span class="profile__stat-number">${imageCount}</span> poste</li>
-					<li class="profile__stat"><span class="profile__stat-number">${followerCount} </span><a href="/follow/follower/${user.id}">suiveurs</a></li>
+					<li class="profile__stat"><span class="profile__stat-number">${followerCount} </span><a href="/follow/follower/${user.id}">followers</a></li>
 					<li class="profile__stat"><span class="profile__stat-number">${followCount} </span><a href="/follow/follow/${user.id}">suivre</a></li>
 				</ul>
 				
@@ -70,26 +70,22 @@
 		</header>
 		
 		<div class="profile__photo-grid">
-				
-				<!-- 유저가 업로드한 Feed 사진 -->
 				<c:forEach var="image" items="${user.images}">
 					<div class="profile__photo">
 						<a href="image-detail.html"> <img src="/upload/${image.postImage}"></a>
 						<div class="profile__photo-overlay">
 							<span class="profile__photo-stat"> <i class="fa fa-heart"></i> ${image.likeCount}</span> 
-							<span class="profile__photo-stat"> <i class="fa fa-comment"></i> 22</span>
+							<span class="profile__photo-stat"> <i class="fa fa-comment"></i> 0</span>
 						</div>
 					</div>									
 				</c:forEach>
-				
 		</div>
 	</main>
 
 	<div class="profile__overlay">
 		<i class="fa fa-times"></i>
 		<div class="profile__overlay-container">
-			<!-- 패스워드 변경 직접 구현 -->
-			<a href="/auth/password" class="profile__overlay-link">Change password</a> 
+<%--			<a href="/auth/password" class="profile__overlay-link">Change password</a> --%>
 			<a href="/logout" class="profile__overlay-link" id="logout">Logout</a> 
 			<a href="#" class="profile__overlay-link" id="cancel">Cancel</a>
 		</div>

@@ -30,7 +30,7 @@ function make_feed_box(image){
 	feed_box += `</span> <span class="photo__action">`;
 	feed_box += `<i class="fa fa-comment-o"></i></span></div>`;
 	
-	// 수정 좋아요 카운트 증가
+
 	feed_box += `<span class="photo__likes" id="photo_likes_count_${image.id}">${image.likeCount}</span><span class="photo__likes"> likes</span><div class="photo_caption">`;
 	feed_box += `<span class="photo__username">${image.user.username} </span>`;
 	feed_box += `${image.caption}</div><div class="photo_tag">`;
@@ -41,10 +41,6 @@ function make_feed_box(image){
 	
 	feed_box +=`</div>`;
 	feed_box += `<ul class="photo__comments"><li class="photo__comment">`;
-	feed_box += `<span class="photo__comment-author">serranoarevalo</span>`;
-	feed_box += `i love this!</li><li class="photo__comment">`;
-	feed_box += `<span class="photo__comment-author">serranoarevalo</span>`;
-	feed_box += `i don't love this!</li></ul><span class="photo__date">${image.createDate}</span>`;
 	feed_box += `<div class="photo__add-comment-container">`;
 	feed_box += `<textarea placeholder="Add a comment..."></textarea>`;
     feed_box += `<i class="fa fa-ellipsis-h"></i></div></div></div >`;
@@ -53,13 +49,12 @@ function make_feed_box(image){
 }
 
 async function load_feed_box(){
-	// fetch 로 다운로드
+
 	let response = await fetch(`/image/feed/scroll?page=${page}`);
 	let images = await response.json();
 	
 	console.log(images);
-	
-	// 3번 실행 필요
+
 	images.forEach(function(image){
 		let feed_box = make_feed_box(image);
 	    $("#feed").append(feed_box);

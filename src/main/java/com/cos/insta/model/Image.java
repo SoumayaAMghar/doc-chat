@@ -35,7 +35,16 @@ public class Image{
 	@JoinColumn(name="userId")
 	@JsonIgnoreProperties({"password", "images"})
 	private User user;
-	
+
+//	@ManyToOne
+//	@JoinColumn(name= "commentId")
+//	@JsonIgnoreProperties({"user"})
+//	private Comment comment;
+
+	@OneToMany(mappedBy = "image")
+	private List<Comment> comments = new ArrayList<>();
+
+
 	// (1) Like List
 	@OneToMany(mappedBy = "image")
 	private List<Likes> likes = new ArrayList<>();

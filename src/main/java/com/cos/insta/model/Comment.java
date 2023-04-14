@@ -3,10 +3,7 @@ package com.cos.insta.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -15,23 +12,21 @@ public class Comment {
     @Id
     @GeneratedValue
     private Long Id;
-
     private String text;
 
+    public Comment(String text) {
+        this.text = text;
+    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "image_id")
+    private Image image;
     @ManyToOne
     private Post post;
-
     @ManyToOne
+    @JoinColumn(name="userId")
     private User creator;
 
     public Comment() {
+
     }
-
-    public Comment(String text, Post post, User creator) {
-        this.text = text;
-        this.post = post;
-        this.creator = creator;
-    }
-
-
 }

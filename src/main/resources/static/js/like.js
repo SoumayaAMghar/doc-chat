@@ -1,4 +1,4 @@
-// 수정 좋아요 카운트 증가
+
 async function onFeedLoad(imageId){
 	let msg = await like(imageId);
 	let likeCount = $("#photo_likes_count_"+imageId).text();
